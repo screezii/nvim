@@ -22,6 +22,8 @@ end)
 keyset("n", "<]a>", "<C-a>", { noremap = true, silent = true })
 keyset("v", "<]a>", "g<C-a>", { noremap = true, silent = true })
 keyset("n", "<leader>sr", ":%s/<C-r><C-w>//g<Left><Left>")
+keyset({ "n", "v" }, "<M-a>", "<C-a>", { desc = "Increment number" })
+keyset({ "n", "v" }, "<M-x>", "<C-x>", { desc = "Decrement number" })
 
 -- snacks
 keyset("n", "<leader>ff", function()
