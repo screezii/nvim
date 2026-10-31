@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
 		build = ":TSUpdate",
 		-- dependencies = {
 		-- 	"nvim-treesitter/nvim-treesitter-context"
@@ -15,14 +16,14 @@ return {
 				highlight = {
 					enable = true,
 					disable = { "latex", "tex" },
-					additional_vim_regex_highlighting = { "latex", "tex" }
+					additional_vim_regex_highlighting = { "latex", "tex" },
 				},
 				indent = {
 					enable = true,
-					disable = { "latex", "tex" }
+					disable = { "latex", "tex" },
 				},
 			})
-		end
+		end,
 	},
 	{
 		"williamboman/mason.nvim",
@@ -108,7 +109,6 @@ return {
 						end,
 					})
 
-
 					vim.keymap.set({ "i" }, "<C-L>", function()
 						ls.expand()
 					end, { silent = true })
@@ -159,10 +159,10 @@ return {
 					keyword_length = 1,
 				},
 				sources = {
-					{ name = "luasnip",  priority = 1000 },
+					{ name = "luasnip", priority = 1000 },
 					{ name = "nvim_lsp", priority = 750 },
-					{ name = "path",     priority = 250 },
-					{ name = "buffer",   priority = 500 },
+					{ name = "path", priority = 250 },
+					{ name = "buffer", priority = 500 },
 				},
 				sorting = {
 					comparators = {
@@ -181,12 +181,19 @@ return {
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					["<C-d>"] = cmp.mapping.scroll_docs(4, { silent = true }),
 					["<Tab>"] = cmp.mapping(function(fallback)
-						if ls.expand_or_jumpable() then
-							ls.expand_or_jump()
+						local col = vim.fn.col(".") - 1
+						local before = vim.api.nvim_get_current_line():sub(1, col)
+
+						-- At line start or after whitespace: always insert a real Tab
+						if vim.fn.mode() == "i" and (col == 0 or before:match("%s$")) then
+							cmp.close()
+							fallback()
 						elseif cmp.visible() then
 							cmp.select_next_item()
+						elseif ls.expand_or_locally_jumpable() then
+							ls.expand_or_jump()
 						else
-							cmp.complete()
+							fallback()
 						end
 					end, { "i", "s" }),
 					["<S-Tab>"] = cmp.mapping(function(fallback)
@@ -209,7 +216,7 @@ return {
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
-				}
+				},
 			})
 		end,
 	},
@@ -227,7 +234,7 @@ return {
 
 					local function goto_definition_vsplit()
 						local current_win = vim.api.nvim_get_current_win()
-						vim.cmd('vsplit')
+						vim.cmd("vsplit")
 						local new_win = vim.api.nvim_get_current_win()
 						vim.lsp.buf.definition()
 						vim.api.nvim_set_current_win(new_win)
@@ -235,13 +242,17 @@ return {
 
 					vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 					vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", opts)
-					vim.keymap.set('n', 'gvd', goto_definition_vsplit,
-						{ noremap = true, silent = true, desc = 'Go to definition in vertical split' })
+					vim.keymap.set(
+						"n",
+						"gvd",
+						goto_definition_vsplit,
+						{ noremap = true, silent = true, desc = "Go to definition in vertical split" }
+					)
 					vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
 					vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
 					vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 					vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-					vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+					vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
 					vim.keymap.set("n", "<C-k>", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 					vim.keymap.set("n", "<space>a", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 				end,
@@ -260,7 +271,7 @@ return {
 				},
 			})
 
-			vim.lsp.config('eslint', {
+			vim.lsp.config("eslint", {
 				on_attach = function(client, bufnr)
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						buffer = bufnr,
@@ -278,7 +289,7 @@ return {
 					workingDirectory = { mode = "auto" },
 				},
 			})
-			vim.lsp.enable('eslint')
+			vim.lsp.enable("eslint")
 		end,
 	},
 	{
@@ -293,11 +304,11 @@ return {
 			},
 			format_on_save = {
 				timeout_ms = 500,
-				lsp_fallback = true
-			}
+				lsp_fallback = true,
+			},
 		},
 	},
 	{
 		"nvim-java/nvim-java",
-	}
+	},
 }

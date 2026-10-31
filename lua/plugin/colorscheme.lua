@@ -8,7 +8,7 @@ return {
 		lazy = true,
 		config = function()
 			vim.g.material_style = "deep ocean"
-		end
+		end,
 	},
 	{
 		"Mofiqul/dracula.nvim",
@@ -66,9 +66,9 @@ return {
 					CocSemComment = { fg = "", bg = "#0E1018" },
 					CocSemMacro = { fg = "", bg = "#0E1018" },
 					CocSemVariable = { fg = "", bg = "#0E1018" },
-				}
+				},
 			})
-		end
+		end,
 	},
 	{
 		"christianchiarulli/nvcode-color-schemes.vim",
@@ -79,26 +79,24 @@ return {
 		lazy = true,
 		priority = 1000,
 		config = function()
-			require('rose-pine').setup({
-				variant = 'auto',
-				dark_variant = 'moon',
+			require("rose-pine").setup({
+				variant = "auto",
+				dark_variant = "moon",
 				styles = {
 					bold = true,
-					italic = true
-				}
-
+					italic = true,
+				},
 			})
-		end
-
+		end,
 	},
 	{
 		"loctvl842/monokai-pro.nvim",
 		config = function()
 			require("monokai-pro").setup({
 				transparent_background = true,
-				filter = "octagon"
+				filter = "octagon",
 			})
-		end
+		end,
 	},
 	{
 		"GrzegorzSzczepanek/cyberdyne.nvim",

@@ -5,23 +5,46 @@ function ColorCanvas(color, transparent)
 
 	require("custom_hl")
 
-	if transparent == nil then transparent = true end
+	if transparent == nil then
+		transparent = true
+	end
 
 	local highlight_groups = {
-		"Normal", "NormalFloat", "NormalNC",
-		"NvimTreeNormal", "NvimTreeNormalNC", "NvimTreeEndOfBuffer",
-		"StatusLine", "StatusLineNC",
-		"SignColumn", "WinSeparator",
-		"NoicePopup", "NoicePopupBorder",
-		"NoiceCmdlinePopup", "NoiceCmdlinePopupBorder",
-		"NoiceConfirm", "NoiceConfirmBorder",
-		"NoiceVirtualText", "NoiceMini", "NotifyINFOBorder", "NotifyWARNBorder", "NotifyERRORBorder",
-		"TreesitterContext", "TreesitterContextLineNumber",
-		"FloatBorder", "FloatShadow", "FloatShadowThrough", "Pmenu" }
+		"Normal",
+		"NormalFloat",
+		"NormalNC",
+		"NvimTreeNormal",
+		"NvimTreeNormalNC",
+		"NvimTreeEndOfBuffer",
+		"StatusLine",
+		"StatusLineNC",
+		"SignColumn",
+		"WinSeparator",
+		"NoicePopup",
+		"NoicePopupBorder",
+		"NoiceCmdlinePopup",
+		"NoiceCmdlinePopupBorder",
+		"NoiceConfirm",
+		"NoiceConfirmBorder",
+		"NoiceVirtualText",
+		"NoiceMini",
+		"NotifyINFOBorder",
+		"NotifyWARNBorder",
+		"NotifyERRORBorder",
+		"TreesitterContext",
+		"TreesitterContextLineNumber",
+		"FloatBorder",
+		"FloatShadow",
+		"FloatShadowThrough",
+		"Pmenu",
+	}
 
 	local diagnostic_groups = {
-		"DiagnosticVirtualTextError", "DiagnosticVirtualTextWarn",
-		"DiagnosticVirtualTextInfo", "DiagnosticVirtualTextHint", "DiagnosticVirtualTextOk"
+		"DiagnosticVirtualTextError",
+		"DiagnosticVirtualTextWarn",
+		"DiagnosticVirtualTextInfo",
+		"DiagnosticVirtualTextHint",
+		"DiagnosticVirtualTextOk",
 	}
 
 	if transparent then
