@@ -49,7 +49,14 @@ function ColorCanvas(color, transparent)
 
 	if transparent then
 		for _, group in ipairs(diagnostic_groups) do
-			vim.cmd("highlight " .. group .. " guibg=NONE")
+			-- resolve the (possibly linked) group so its fg survives; `:hi X guibg=NONE` breaks the link
+			local resolved = vim.api.nvim_get_hl(0, { name = group, link = false })
+			if resolved.fg == nil then
+				local base = vim.api.nvim_get_hl(0, { name = group:gsub("VirtualText", ""), link = false })
+				resolved.fg = base.fg
+			end
+			resolved.bg = nil
+			vim.api.nvim_set_hl(0, group, resolved)
 		end
 
 		for _, group in ipairs(highlight_groups) do
