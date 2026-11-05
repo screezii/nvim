@@ -1,5 +1,4 @@
 local keyset = vim.keymap.set
-
 -- Global Leader
 vim.g.mapleader = ","
 
@@ -108,3 +107,4 @@ keyset("n", "<leader>gw", ":Gwrite<cr>", { silent = true })
 keyset("n", "<leader>gb", ":Gitsigns blame_line<cr>", { silent = true })
 keyset("n", "<leader>gB", ":Gitsigns blame<cr>", { silent = true })
 keyset("n", "<leader>gp", ":Octo pr list<cr>", { silent = true, desc = "Octo: PR list" })
+keyset("n", "<leader>gf", ":DiffOrig<cr>", { silent = true, desc = "Diff File Buffer from Original" })

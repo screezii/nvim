@@ -450,14 +450,14 @@ return {
 		},
 		config = true,
 		keys = {
-			{ "<localleader>a",  nil,                              desc = "AI/Claude Code" },
-			{ "<localleader>ac", "<cmd>ClaudeCode<cr>",            desc = "Toggle Claude" },
-			{ "<localleader>af", "<cmd>ClaudeCodeFocus<cr>",       desc = "Focus Claude" },
-			{ "<localleader>aw", "<C-w>p",                         desc = "Return to editor" },
-			{ "<localleader>ar", "<cmd>ClaudeCode --resume<cr>",   desc = "Resume Claude" },
+			{ "<localleader>a", nil, desc = "AI/Claude Code" },
+			{ "<localleader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+			{ "<localleader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+			{ "<localleader>aw", "<C-w>p", desc = "Return to editor" },
+			{ "<localleader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
 			{ "<localleader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
 			{ "<localleader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
-			{ "<localleader>ab", "<cmd>ClaudeCodeAdd %<cr>",       desc = "Add current buffer" },
+			{ "<localleader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
 			{
 				"<localleader>as",
 				"<cmd>ClaudeCodeSend<cr>",
@@ -472,7 +472,7 @@ return {
 			},
 			-- Diff management
 			{ "<localleader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
-			{ "<localleader>ad", "<cmd>ClaudeCodeDiffDeny<cr>",   desc = "Deny diff" },
+			{ "<localleader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
 		},
 	},
 	{
