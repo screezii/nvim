@@ -264,6 +264,9 @@ return {
 					sorter = "case_sensitive",
 				},
 				disable_netrw = true,
+				hijack_directories = {
+					enable = false,
+				},
 				view = {
 					width = 50,
 				},
